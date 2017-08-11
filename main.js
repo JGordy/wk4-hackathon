@@ -24,8 +24,8 @@ function loadLogin(){
     <h1>Iron Meetups</h1>
     <h3>Please Log In</h3>
     <form>
-      <input id="loginEmail" type="email" name="email" placeholder="Email Address" value="1" required>
-      <input id="loginPassword" type="password" name="password" placeholder="Password" value="1" required>
+      <input id="loginEmail" type="email" name="email" placeholder="Email Address" value="" required>
+      <input id="loginPassword" type="password" name="password" placeholder="Password" value="" required>
       <button id="loginSignUp" type="button" name="signUp">Sign Up!</button>
       <button id="loginLogin" class="active" type="button" name="login">Login</button>
     </form>
@@ -112,20 +112,15 @@ function loadSignUp(){
     let last = document.getElementById('lastSignUp').value;
 
     if(!email || !password || !confirm || !first || !last){
-        console.log("You done done it wrong");
+      alert("You done done it wrong");
     } else if((email.indexOf("@") === -1) || (email.indexOf(".") === -1)){
-      console.log("Please enter a valid email address");
+      alert("Please enter a valid email address");
     } else {
       console.log("You done done it right");
       if (password === confirm){
         console.log("match!");
-        loadEventList();
-        //createAccount();
-
-
-        // fetch POST
-          //if status === 200 {loadNextPage}
-          //else {some kind of visible error for the user}
+        // loadEventList();
+        createAccount();
 
       } else {
         console.log('They do not match.');
@@ -293,26 +288,26 @@ loadLogin();
 
 function createAccount(){
   let post = {
-    url: "url",
-    method:"post",
+    url: "https://tiy-may-hackathon-api.herokuapp.com/api/user/register",
+    method: "post",
     body: {
       email: document.getElementById('userSignUp').value,
       password: document.getElementById('passSignUp').value,
       firstName: document.getElementById('firstSignUp').value,
       lastName: document.getElementById('lastSignUp').value
-    }
+    },
+    mode:"no-cors"
   }
   fetch(post).then(function (response) {
     if (response.status === 200){
-      window.location.href = "eventlist.html";
-      return response;
-      console.log("im here");
+      loadEventList();
+
     } else {
 
-      console.log("Request failed", error);
+      console.log("Request failed: ", response.status);
     }
   }).catch(function(error) {
-
+      console.log("There was an error: ", error);
   })
 }
 
