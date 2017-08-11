@@ -15,15 +15,15 @@ function loadEventList() {
                               <main id="main_content">
                               </main>`;
 
-  fetch("url")
-    .then(
-      function(response) {
-        if (response.status !== 200) {
-          console.log(response.status);
-          return;
-        }
-        response.json().then(function(data) {
-          console.log("Here is the data:", data);
+  // fetch("url")
+  //   .then(
+  //     function(response) {
+  //       if (response.status !== 200) {
+  //         console.log(response.status);
+  //         return;
+  //       }
+  //       response.json().then(function(data) {
+  //         console.log("Here is the data:", data);
 //
 //  once api is created, change results.length to data
 //
@@ -46,12 +46,12 @@ function loadEventList() {
                                     `
           }
 
-        });
-      }
-    )
-    .catch(function(err) {
-      console.log("Fetch Error :-S", err);
-    });
+    //     });
+    //   }
+    // )
+    // .catch(function(err) {
+    //   console.log("Fetch Error :-S", err);
+    // });
 
     let eventButton = document.getElementById("events_button");
     eventButton.addEventListener("click", loadEventList);
